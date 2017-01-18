@@ -1,12 +1,12 @@
 ---
 - name: nextcloud docker container
   docker_container:
-    name: nextcloud_app
+    name: "{{ nextcloud_instance_name }}"
     image: "wonderfall/nextcloud:{{ nextcloud_version }}"
     state: started
     recreate: yes
     ports: 8888:8888
-    links: nextcloud_db
+    links: "nextcloud_db_{{ nextcloud_instance_name }}"
     volumes:
       - "{{ nextcloud_config }}:/config"
       - "{{ nextcloud_apps }}:/apps2"
